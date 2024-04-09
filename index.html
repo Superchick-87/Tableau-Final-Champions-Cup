@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tableau de rugby - Quarts de finale à la finale</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
 </head>
 <style>
     * {
@@ -90,8 +92,8 @@
 </style>
 
 <body>
-
-    <form id="myForm">
+   
+   
         <!-- <input type="text" id="input1" name="input1">
         <input type="text" id="input2" name="input2"> -->
 
@@ -103,11 +105,11 @@
                     <h3>Quart de finale 4</h3>
                     <input type="text" id="lieu_qf4" class="lieu" value="A Toulouse, dimanche 16h">
                     <br>
-                    <img id="team1_qf4-logo" src="images/Rugby/Toulouse.png" alt="">
+                    <img id="team1_qf4-logo" src="images/Rugby/Toulouse.png" alt="" data-team-name="">
                     <input type="text" id="team1_qf4" placeholder="Équipe 1" class="equipe" value="Toulouse">
-                    <input type="number" id="score1_qf4" placeholder="" class="score">
+                    <input type="number" id="score1_qf4" placeholder="" class="score" value="">
                     <br>
-                    <img id="team2_qf4-logo" src="images/Rugby/Exeter.png" alt="">
+                    <img id="team2_qf4-logo" src="images/Rugby/Exeter.png" alt="" data-team-name="">
                     <input type="text" id="team2_qf4" placeholder="Équipe 2" class="equipe" value="Exeter">
                     <input type="number" id="score2_qf4" placeholder="" class="score">
                 </div>
@@ -129,11 +131,11 @@
                 <h3>Demi-finale 1</h3>
                 <input type="text" id="lieu_sf1" class="lieu" value="">
                 <br>
-                <img id="team1_sf1-logo" src="images/Rugby/xx.png" alt="">
-                <input type="text" id="team1_sf1" placeholder="Équipe 1" class="equipe" value="">
+                <img id="team1_sf1-logo" src="images/Rugby/xx.png" alt="" data-team-name="">
+                <input type="text" id="team1_sf1" placeholder="Équipe 1" class="equipe" value="" data-team-name="">
                 <input type="number" id="score1_sf1" placeholder="" class="score">
                 <br>
-                <img id="team2_sf1-logo" src="images/Rugby/xx.png" alt="">
+                <img id="team2_sf1-logo" src="images/Rugby/xx.png" alt="" data-team-name="">
                 <input type="text" id="team2_sf1" placeholder="Équipe 2" class="equipe" value="">
                 <input type="number" id="score2_sf1" placeholder="" class="score">
             </div>
@@ -141,11 +143,11 @@
                 <h3>Demi-finale 2</h3>
                 <input type="text" id="lieu_sf2" class="lieu" value="">
                 <br>
-                <img id="team1_sf2-logo" src="images/Rugby/xx.png" alt="">
+                <img id="team1_sf2-logo" src="images/Rugby/xx.png" alt="" data-team-name="">
                 <input type="text" id="team1_sf2" placeholder="Équipe 1" class="equipe" value="">
                 <input type="number" id="score1_sf2" placeholder="" class="score">
                 <br>
-                <img id="team2_sf2-logo" src="images/Rugby/xx.png" alt="">
+                <img id="team2_sf2-logo" src="images/Rugby/xx.png" alt="" data-team-name="">
                 <input type="text" id="team2_sf2" placeholder="Équipe 2" class="equipe" value="">
                 <input type="number" id="score2_sf2" placeholder="" class="score">
             </div>
@@ -155,11 +157,11 @@
                     <h3>Quart de finale 2</h3>
                     <input type="text" id="lieu_qf2" class="lieu" value="A Dublin, samedi 18h45">
                     <br>
-                    <img id="team1_qf2-logo" src="images/Rugby/Leinster.png" alt="">
+                    <img id="team1_qf2-logo" src="images/Rugby/Leinster.png" alt="" data-team-name="">
                     <input type="text" id="team1_qf2" placeholder="Équipe 1" class="equipe" value="Leinster">
                     <input type="number" id="score1_qf2" placeholder="" class="score">
                     <br>
-                    <img id="team2_qf2-logo" src="images/Rugby/LaRochelle.png" alt="">
+                    <img id="team2_qf2-logo" src="images/Rugby/LaRochelle.png" alt="" data-team-name="">
                     <input type="text" id="team2_qf2" placeholder="Équipe 2" class="equipe" value="La Rochelle">
                     <input type="number" id="score2_qf2" placeholder="" class="score">
                 </div>
@@ -167,11 +169,11 @@
                     <h3>Quart de finale 3</h3>
                     <input type="text" id="lieu_qf3" class="lieu" value="A Northampton, samedi 21h">
                     <br>
-                    <img id="team1_qf3-logo" src="images/Rugby/Northampton.png" alt="">
+                    <img id="team1_qf3-logo" src="images/Rugby/Northampton.png" alt="" data-team-name="">
                     <input type="text" id="team1_qf3" placeholder="Équipe 1" class="equipe" value="Northampton">
                     <input type="number" id="score1_qf3" placeholder="" class="score">
                     <br>
-                    <img id="team2_qf3-logo" src="images/Rugby/Bulls.png" alt="">
+                    <img id="team2_qf3-logo" src="images/Rugby/Bulls.png" alt="" data-team-name="">
                     <input type="text" id="team2_qf3" placeholder="Équipe 2" class="equipe" value="Bulls">
                     <input type="number" id="score2_qf3" placeholder="" class="score">
                 </div>
@@ -181,7 +183,7 @@
             <h3>Finale</h3>
             <input type="text" id="lieu_final" class="lieu" value="">
             <br>
-            <img id="team1_final-logo" src="images/Rugby/xx.png" alt="">
+            <img id="team1_final-logo" src="images/Rugby/xx.png" alt="" data-team-name=>
             <input type="text" id="team1_final" placeholder="Équipe 1" class="equipe" value="">
             <input type="number" id="score1_final" placeholder="Score" class="score">
             <br>
@@ -190,34 +192,47 @@
             <input type="number" id="score2_final" placeholder="Score" class="score">
         </div>
 
-        <button type="button" id="submitBtn">Envoyer</button>
-    </form>
+       
+            
 
-    <div id="result"></div>
+    <button type="button" id="submitBtn" onclick="sendData()">Envoyer</button>
+    <div id="txtHint"></div>
 
     <script>
-        $(document).ready(function () {
-            $("#submitBtn").click(function () {
-                var input1_val = $("#input1").val();
-                var input2_val = $("#input2").val();
+        function sendData() {
+            // Créer un objet FormData pour collecter toutes les données des champs d'entrée
+            var formData = new FormData();
 
-                $.ajax({
-                    url: "traitement.php", // L'URL du script côté serveur
-                    type: "POST",
-                    data: {
-                        input1: input1_val,
-                        input2: input2_val
-                    },
-                    success: function (response) {
-                        $("#result").html(response); // Afficher la réponse dans un élément HTML
-                    },
-                    error: function (xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
+            // Sélectionner tous les champs d'entrée
+            var inputs = document.querySelectorAll('input');
+
+            // Parcourir tous les champs d'entrée
+            inputs.forEach(function(input) {
+                // Ajouter chaque valeur de champ d'entrée au formData
+                formData.append(input.id, input.value);
             });
-        });
+
+            // Créer un objet XMLHttpRequest
+            var xhttp = new XMLHttpRequest();
+
+            // Définir ce qu'il se passe lorsqu'une réponse est reçue
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Mettre à jour le contenu de l'élément avec la réponse
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+
+            // Ouvrir une connexion vers le fichier done.php
+            xhttp.open("POST", "done.php", true);
+
+            // Envoyer le formData
+            xhttp.send(formData);
+        }
     </script>
+
+
+
     <script>
 
         // Fonction pour supprimer les espaces, les accents et les tirets d'une chaîne de caractères
@@ -250,24 +265,22 @@
 
 
 
-
-
-        // Récupérez les éléments des quarts de finale
         const qfElements = document.querySelectorAll('.quarter-final');
 
-        // Ajoutez des écouteurs d'événements pour les quarts de finale
-        qfElements.forEach(qfElement => {
-            const scoreInputs = qfElement.querySelectorAll('.score');
-            scoreInputs.forEach(scoreInput => {
-                scoreInput.addEventListener('change', updateSemiFinals);
-            });
+       // Ajoutez des écouteurs d'événements pour les quarts de finale
+qfElements.forEach(qfElement => {
+    const scoreInputs = qfElement.querySelectorAll('.score');
+    scoreInputs.forEach(scoreInput => {
+        scoreInput.addEventListener('change', updateSemiFinals);
+        scoreInput.addEventListener('change', updateFinal); // Ajout de l'écouteur pour la finale
+    });
 
-            // Mettez à jour les images des équipes pour les quarts de finale
-            const teamInputs = qfElement.querySelectorAll('.equipe');
-            teamInputs.forEach(teamInput => {
-                teamInput.addEventListener('change', updateTeamImage);
-            });
-        });
+    // Mettez à jour les images des équipes pour les quarts de finale
+    const teamInputs = qfElement.querySelectorAll('.equipe');
+    teamInputs.forEach(teamInput => {
+        teamInput.addEventListener('change', updateTeamImage);
+    });
+});
 
         // Fonction pour mettre à jour les demi-finales en fonction des scores des quarts de finale
         function updateSemiFinals() {
@@ -348,7 +361,71 @@
 
         }
 
-        function updateTeamImage() {
+
+// Récupérer les éléments des scores des demi-finales
+const scoreInputs_sf1 = document.querySelectorAll('.semi-final #score1_sf1, .semi-final #score2_sf1');
+const scoreInputs_sf2 = document.querySelectorAll('.semi-final #score1_sf2, .semi-final #score2_sf2');
+
+// Ajouter des écouteurs d'événements pour les scores des demi-finales
+scoreInputs_sf1.forEach(scoreInput => {
+    scoreInput.addEventListener('change', updateFinalIfAllScoresFilled);
+});
+
+scoreInputs_sf2.forEach(scoreInput => {
+    scoreInput.addEventListener('change', updateFinalIfAllScoresFilled);
+});
+
+// Fonction pour mettre à jour la finale uniquement si tous les scores des demi-finales sont remplis
+function updateFinalIfAllScoresFilled() {
+    // Récupérer les scores des demi-finales
+    const score1_sf1 = Number(document.getElementById('score1_sf1').value);
+    const score2_sf1 = Number(document.getElementById('score2_sf1').value);
+    const score1_sf2 = Number(document.getElementById('score1_sf2').value);
+    const score2_sf2 = Number(document.getElementById('score2_sf2').value);
+
+    // Vérifier si tous les scores des demi-finales sont remplis
+    if (!isNaN(score1_sf1) && !isNaN(score2_sf1) && !isNaN(score1_sf2) && !isNaN(score2_sf2)) {
+        // Appeler la fonction pour mettre à jour la finale
+        updateFinal();
+    }
+    updateTeamImagesForFinal();
+}
+
+
+// Fonction pour mettre à jour la finale en fonction des scores des demi-finales
+function updateFinal() {
+    // Récupérez les éléments des scores des demi-finales
+    const score1_sf1 = Number(document.getElementById('score1_sf1').value);
+    const score2_sf1 = Number(document.getElementById('score2_sf1').value);
+    const score1_sf2 = Number(document.getElementById('score1_sf2').value);
+    const score2_sf2 = Number(document.getElementById('score2_sf2').value);
+
+    // Récupérez les éléments des équipes des demi-finales
+    const team1_sf1 = document.getElementById('team1_sf1').value;
+    const team2_sf1 = document.getElementById('team2_sf1').value;
+    const team1_sf2 = document.getElementById('team1_sf2').value;
+    const team2_sf2 = document.getElementById('team2_sf2').value;
+
+    // Sélectionnez l'équipe gagnante de chaque demi-finale en fonction du score le plus élevé
+    const winner_sf1 = (score1_sf1 > score2_sf1) ? team1_sf1 : team2_sf1;
+    const winner_sf2 = (score1_sf2 > score2_sf2) ? team1_sf2 : team2_sf2;
+
+    // Mettez à jour les équipes dans la finale
+    document.getElementById('team1_final').value = winner_sf1;
+    document.getElementById('team2_final').value = winner_sf2;
+
+    if (score1_sf1 == '' || score2_sf1 == '') {
+        document.getElementById('team1_final').value = '';
+                }
+    if (score1_sf2 == '' || score2_sf2 == '') {
+        document.getElementById('team2_final').value = '';
+                }
+}
+
+
+
+
+ function updateTeamImage() {
             const team1_qf4_logo = document.getElementById('team1_qf4-logo');
             const team2_qf4_logo = document.getElementById('team2_qf4-logo');
             const team1_qf1_logo = document.getElementById('team1_qf1-logo');
@@ -405,12 +482,72 @@
         }
 
 
+ // Fonction pour mettre à jour les images des équipes pour la finale
+function updateTeamImagesForFinal() {
+    // Récupérer les éléments des noms d'équipes pour la finale
+    const team1_final_name = document.getElementById('team1_final').value;
+    const team2_final_name = document.getElementById('team2_final').value;
 
+    // Récupérer les éléments des images d'équipes pour la finale
+    const team1_final_logo = document.getElementById('team1_final-logo');
+    const team2_final_logo = document.getElementById('team2_final-logo');
 
+    // Déterminer le nom de fichier d'image par défaut
+    const defaultImage = "xx.png";
 
-
+    // Mettre à jour les images des équipes pour la finale
+    team1_final_logo.src = team1_final_name ? `images/Rugby/${cleanString(team1_final_name)}.png` : `images/Rugby/${defaultImage}`;
+    team2_final_logo.src = team2_final_name ? `images/Rugby/${cleanString(team2_final_name)}.png` : `images/Rugby/${defaultImage}`;
+}
 
     </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    // Charger le fichier CSV
+    fetch('datas.csv')
+        .then(response => response.text())
+        .then(data => {
+            // Utiliser PapaParse pour parser le CSV
+            const parsedData = Papa.parse(data, { header: false });
+
+            // Accéder aux données analysées
+            const rows = parsedData.data;
+
+            // Quarts de finale
+            for (let i = 0; i < 4; i++) {
+                const columns = rows[i];
+                document.getElementById(`lieu_qf${i + 1}`).value = columns[1];
+                document.getElementById(`team1_qf${i + 1}`).value = columns[2];
+                document.getElementById(`score1_qf${i + 1}`).value = columns[3];
+                document.getElementById(`team2_qf${i + 1}`).value = columns[4];
+                document.getElementById(`score2_qf${i + 1}`).value = columns[5];
+            }
+
+            // Demi-finales et finale
+            for (let i = 4; i < rows.length; i++) {
+                const columns = rows[i];
+                document.getElementById(`lieu_sf${i - 3}`).value = columns[1];
+                document.getElementById(`team1_sf${i - 3}`).value = columns[2];
+                document.getElementById(`score1_sf${i - 3}`).value = columns[3];
+                document.getElementById(`team2_sf${i - 3}`).value = columns[4];
+                document.getElementById(`score2_sf${i - 3}`).value = columns[5];
+
+                if (i === rows.length - 1) { // Dernière ligne pour la finale
+                    document.getElementById(`lieu_final`).value = columns[1];
+                    document.getElementById(`team1_final`).value = columns[2];
+                    document.getElementById(`score1_final`).value = columns[3];
+                    document.getElementById(`team2_final`).value = columns[4];
+                    document.getElementById(`score2_final`).value = columns[5];
+                }
+            }
+        })
+        .catch(error => console.log('Erreur de chargement du fichier CSV :', error));
+});
+
+    </script>
+                 
 </body>
 
 </html>
