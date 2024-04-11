@@ -1,7 +1,7 @@
 "Quart de finale 1","A Bordeaux, samedi 16h",Bordeaux-Bègles,45,Harlequins,18
 "Quart de finale 2","A Dublin, samedi 18h45",Leinster,16,"La Rochelle",24
 "Quart de finale 3","A Northampton, samedi 21h",Northampton,19,Bulls,6
-"Quart de finale 4","A Toulouse, dimanche 16h",Toulouse,,Exeter,
-"Demi-finale 1","vcvvv,vcvc",,,Bordeaux-Bègles,
+"Quart de finale 4","A Toulouse, dimanche 16h",Toulouse,20,Exeter,10
+"Demi-finale 1","vcvvv,vcvc",Toulouse,20,Bordeaux-Bègles,10
 "Demi-finale 2",vvv,"La Rochelle",15,Northampton,46
-Finale,vcvcvcvcvc,,,Northampton,
+Finale,vcvcvcvcvc,Toulouse,100,Northampton,50
