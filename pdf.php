@@ -45,7 +45,7 @@ $csv = read($csv);
 //  */
 
 // // Include the main TCPDF library (search for installation path).
-require_once('TCPDF-master/tcpdf.php');
+require_once('TCPDF/tcpdf.php');
 
 // create new PDF document
 $pageLayout = array(101.8, 75); //  or array($height, $width) 
@@ -109,20 +109,7 @@ $pdf->setFont($font_family = 'roboto', '', 7, '', false);
 
 // $pdf->ImageSVG('images/fond.svg', 0, 0, 101.8, 75, '', '', '', '', false);
 
-$border = 0;
 
-$width_team = 23;
-$width_score = 5;
-$height_cell = 3.5;
-
-$x_qf = 4;
-$y_qf4 = 18;
-$y_qf1 = 33;
-$y_qf2 = 48;
-$y_qf3 = 63;
-
-$space_x = 0.5;
-$space_y = 2;
 
 
 // $pdf->SetFont('robotomedium', '', 9, '', false);
@@ -149,15 +136,40 @@ function drawMatchCells($pdf, $x, $y, $width_team, $width_score, $height_cell, $
     $pdf->Cell($width_team, $height_cell, $match_data[2], $border, 0, 'L', 1, 1, 1, false, '', 'L');
     $pdf->SetXY($x + $width_team + $space_x, $y);
     $pdf->Cell($width_score, $height_cell, $match_data[3], $border, 0, 'L', 1, 1, 1, false, '', 'M');
-    $pdf->Image('images/Rugby/' . ddc($match_data[2]) . '.png', 0, $y - 0.3, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
+    $pdf->Image('images/Rugby/' . ddc($match_data[2]) . '.png', $x-4, $y - 0.3, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
 
 
     $pdf->SetXY($x, $y + $height_cell + $space_y);
     $pdf->Cell($width_team, $height_cell, $match_data[4], $border, 0, 'L', 1, 1, 1, false, '', 'L');
     $pdf->SetXY($x + $width_team + $space_x, $y + $height_cell + $space_y);
     $pdf->Cell($width_score, $height_cell, $match_data[5], $border, 0, 'L', 1, 1, 1, false, '', 'M');
-    $pdf->Image('images/Rugby/' . ddc($match_data[4]) . '.png', 0, $y + $height_cell + $space_y - 0.5, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
+    $pdf->Image('images/Rugby/' . ddc($match_data[4]) . '.png', $x-4, $y + $height_cell + $space_y - 0.5, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
 }
+
+
+$border = 0;
+
+$width_team = 23;
+$width_score = 5;
+$height_cell = 3.5;
+
+$space_x = 0.5;
+$space_y = 2;
+
+$x_qf = 4;
+$y_qf4 = 18;
+$y_qf1 = 33;
+$y_qf2 = 48;
+$y_qf3 = 63;
+
+$x_sf = 40;
+$y_sf1 = 25;
+$y_sf2 = 57;
+
+$x_f = 63;
+$y_f = 40;
+
+
 
 // Utilisation de la fonction pour dessiner Quart de finale 4
 drawMatchCells($pdf, $x_qf, $y_qf4, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[3], $border);
@@ -168,6 +180,14 @@ drawMatchCells($pdf, $x_qf, $y_qf2, $width_team, $width_score, $height_cell, $sp
 // Utilisation de la fonction pour dessiner Quart de finale 3
 drawMatchCells($pdf, $x_qf, $y_qf3, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[2], $border);
 
+
+// Utilisation de la fonction pour dessiner Demie finale 1
+drawMatchCells($pdf, $x_sf, $y_sf1, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[4], $border);
+// Utilisation de la fonction pour dessiner Demie finale 2
+drawMatchCells($pdf, $x_sf, $y_sf2, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[5], $border);
+
+// Utilisation de la fonction pour dessiner la finale
+drawMatchCells($pdf, $x_f, $y_f, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[5], $border);
 
 
 // 	// echo "Execution - counter vaut $counter</br>";
