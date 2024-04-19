@@ -1,6 +1,6 @@
 <?php
 include(dirname(__FILE__) . '/includes/ddc.php');
-
+include(dirname(__FILE__) . '/includes/date.php');
 function read($csv)
 {
     $file = fopen($csv, 'r');
@@ -13,30 +13,7 @@ function read($csv)
 $csv = dirname(__FILE__) . '/datas.csv';
 $csv = read($csv);
 
-// while ($counter < count($csv)) {
-//     echo $csv[[$counter][2]];
-// }
-// echo $csv[2][2];
-// echo count($csv) . '</br></br>';
 
-// //============================================================+
-// // File name   : example_006.php
-// // Begin       : 2008-03-04
-// // Last Update : 2013-05-14
-// //
-// // Description : Example 006 for TCPDF class
-// //               WriteHTML and RTL support
-// //
-// // Author: Nicola Asuni
-// //
-// // (c) Copyright:
-// //               Nicola Asuni
-// //               Tecnick.com LTD
-// //               www.tecnick.com
-// //               info@tecnick.com
-// //============================================================+
-
-// /**
 //  * Creates an example PDF TEST document using TCPDF
 //  * @package com.tecnick.tcpdf
 //  * @abstract TCPDF - Example: WriteHTML and RTL support
@@ -44,7 +21,7 @@ $csv = read($csv);
 //  * @since 2008-03-04
 //  */
 
-// // Include the main TCPDF library (search for installation path).
+
 require_once('TCPDF/tcpdf.php');
 
 // create new PDF document
@@ -98,20 +75,14 @@ $utf8text = file_get_contents('TCPDF-master/examples/data/utf8test.txt', false);
 // $fontname = TCPDF_FONTS::addTTFfont('/TCPDF-master/fonts/UtopiaStd-BlackHeadline.ttf', 'TrueTypeUnicode', '', 96);
 // $pdf->SetFont($font_family = 'utopiastdblackheadline', '', 14, '', false);
 $pdf->setFont($font_family = 'roboto', '', 7, '', false);
-// // $pdf->setFont($font_family='robotolight', 10, '', false);
-// // $pdf->setFont($font_family = 'robotomedium', 10, '', false);
-// // $pdf->setFont($font_family='robotoi', 10, '', false);
-// // $pdf->setFont($font_family='robotocondensed', '', false);
-// // $pdf->setFont($font_family='robotobcondensed', '', false);
-// // $pdf->setFont($font_family='robotoblack', '', false);
-
-// // $pdf->setFont($font_family = 'utopiastd', $font_variant = '', $font_size = 10);
-
+// $pdf->setFont($font_family='robotolight', 10, '', false);
+// $pdf->setFont($font_family = 'robotomedium', 10, '', false);
+// $pdf->setFont($font_family='robotoi', 10, '', false);
+// $pdf->setFont($font_family='robotocondensed', '', false);
+// $pdf->setFont($font_family='robotobcondensed', '', false);
+// $pdf->setFont($font_family='robotoblack', '', false);
+// $pdf->setFont($font_family = 'utopiastd', $font_variant = '', $font_size = 10);
 // $pdf->ImageSVG('images/fond.svg', 0, 0, 101.8, 75, '', '', '', '', false);
-
-
-
-
 // $pdf->SetFont('robotomedium', '', 9, '', false);
 // $pdf->SetFillColor(90, 10, 65, 15);
 
@@ -136,18 +107,32 @@ function drawMatchCells($pdf, $x, $y, $width_team, $width_score, $height_cell, $
     $pdf->Cell($width_team, $height_cell, $match_data[2], $border, 0, 'L', 1, 1, 1, false, '', 'L');
     $pdf->SetXY($x + $width_team + $space_x, $y);
     $pdf->Cell($width_score, $height_cell, $match_data[3], $border, 0, 'L', 1, 1, 1, false, '', 'M');
-    $pdf->Image('images/Rugby/' . ddc($match_data[2]) . '.png', $x-4, $y - 0.3, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
+    $pdf->Image('images/Rugby/' . ddc($match_data[2]) . '.png', $x - 4, $y - 0.3, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
 
 
     $pdf->SetXY($x, $y + $height_cell + $space_y);
     $pdf->Cell($width_team, $height_cell, $match_data[4], $border, 0, 'L', 1, 1, 1, false, '', 'L');
     $pdf->SetXY($x + $width_team + $space_x, $y + $height_cell + $space_y);
     $pdf->Cell($width_score, $height_cell, $match_data[5], $border, 0, 'L', 1, 1, 1, false, '', 'M');
-    $pdf->Image('images/Rugby/' . ddc($match_data[4]) . '.png', $x-4, $y + $height_cell + $space_y - 0.5, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
+    $pdf->Image('images/Rugby/' . ddc($match_data[4]) . '.png', $x - 4, $y + $height_cell + $space_y - 0.5, 6.5, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
 }
+$border = 1;
+
+//@ Titre
+$pdf->setCellPaddings(0, 0, 0, 0);
+$pdf->SetFont('robotomedium', '', 18, '', false);
+$pdf->SetTextColor(0, 0, 0, 0);
+$pdf->SetFillColor(90, 10, 65, 15);
+$pdf->SetXY(0, 0);
+$pdf->Cell(101.8, 7.8, 'Champions Cup', $border, 0, 'C', 1);
+
+//@ Epreuves
+$pdf->SetFont('robotoi', '', 10, '', false);
+$pdf->SetTextColor(0, 0, 0, 100);
+$pdf->Text(4, 9.5, 'Quarts de finale'); // Placer le texte centré verticalement (ajuster la hauteur selon la taille de la police)
 
 
-$border = 0;
+
 
 $width_team = 23;
 $width_score = 5;
@@ -189,14 +174,9 @@ drawMatchCells($pdf, $x_sf, $y_sf2, $width_team, $width_score, $height_cell, $sp
 // Utilisation de la fonction pour dessiner la finale
 drawMatchCells($pdf, $x_f, $y_f, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[5], $border);
 
-
-// 	// echo "Execution - counter vaut $counter</br>";
-// 	// echo $csv[$counter][1].'</br>';
-// 	// echo $csv[$counter][2].' | '.$csv[$counter][3].'</br>';
-// }
 // close and output PDF document
-$pdf->Output('example_011.pdf', 'I');
-// $pdf->Output('ProductionPdf/EuroClassement_'.$datePdf.'.pdf','F');
+$pdf->Output('TableauFinalChampions Cup_' . $date . '.pdf', 'I');
+// $pdf->Output('ProductionPdf/TableauFinalChampions Cup_'.$date.'.pdf','F');
 // $pdf->Output('ProductionPdf/Infog_Carburants_1col4modules_' . $ville . '_' . $date . '.pdf', 'F');
 
 //============================================================+

@@ -65,5 +65,4 @@ fclose($file);
 
 // Réponse indiquant que les données ont été écrites avec succès dans le fichier CSV
 echo "Les données ont été enregistrées dans le fichier CSV avec succès.";
-?>
-
+// include('pdf.php');
