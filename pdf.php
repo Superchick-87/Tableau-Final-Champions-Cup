@@ -86,16 +86,37 @@ $pdf->setFont($font_family = 'roboto', '', 7, '', false);
 // $pdf->SetFont('robotomedium', '', 9, '', false);
 // $pdf->SetFillColor(90, 10, 65, 15);
 
-function ImageRelace($logo) {
-    if (file_exists('images/Rugby/' .ddc($logo) . '.png')) {
-       return 'images/Rugby/' .ddc($logo) . '.png';
+function ImageRelace($logo)
+{
+    if (file_exists('images/Rugby/' . ddc($logo) . '.png')) {
+        return 'images/Rugby/' . ddc($logo) . '.png';
     } else {
         return 'images/Rugby/xx.png';
     }
 }
 
+/**
+ * @Documented drawMatchCells
+ * 
+ * @param [type] $pdf
+ * @param [int] $x -> position bloc
+ * @param [int] $y -> position bloc
+ * @param [int] $width_team -> largeur du bloc équipe
+ * @param [int] $width_score -> largeur du bloc score
+ * @param [int] $height_cell -> hauteur des blocs équipe / score
+ * @param [int] $space_x -> espacement entre les blocs équipe / score
+ * @param [int] $space_y -> espacement entre les blocs équipe / score
+ * @param [int] $match_data -> data par ligne dans le csv
+ * @param [int] $border -> 0 / 1
+ */
+
 function drawMatchCells($pdf, $x, $y, $width_team, $width_score, $height_cell, $space_x, $space_y, $match_data, $border)
 {
+    // Définition des dimensions de l'image
+    $imageWidth = 10 / 2.5; // Largeur de l'image en pouces
+    $imageHeight = 15 / 2.5; // Hauteur de l'image en pouces
+
+    // Définition des lieux et horaires
     $pdf->setCellPaddings(0, 0, 0, 0);
     $pdf->SetFont('robotoi', '', 7, '', false);
     $pdf->SetTextColor(0, 0, 0, 100);
@@ -103,49 +124,43 @@ function drawMatchCells($pdf, $x, $y, $width_team, $width_score, $height_cell, $
     $pdf->SetXY($x, $y - 3.5);
     $pdf->Cell($width_team + $width_score, $height_cell, $match_data[1], $border, 0, 'L', 1, 1, 1, false, '', 'L');
 
-
+    // Définition de la font et couleurs pour nom des équipes et scores
     $pdf->SetTextColor(0, 0, 0, 0);
     $pdf->setCellPaddings(1, 0, 1, 0);
     $pdf->SetFont('robotomedium', '', 9, '', false);
     $pdf->SetFillColor(90, 10, 65, 15);
 
+    // #1 Equipes, scores et Ecussons 
     $pdf->SetXY($x, $y);
     $pdf->Cell($width_team, $height_cell, $match_data[2], $border, 0, 'L', 1, 1, 1, false, '', 'L');
     $pdf->SetXY($x + $width_team + $space_x, $y);
     $pdf->Cell($width_score, $height_cell, $match_data[3], $border, 0, 'L', 1, 1, 1, false, '', 'M');
-    // $pdf->Image(ImageRelace($match_data[2]), $x- 4, $y- 0.3, 6, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
-  
-
-// Dimensions de la zone
-$zoneWidth = 60; // Largeur de la zone en pouces
-$zoneHeight = 40; // Hauteur de la zone en pouces
-
-// Dimensions de l'image
-$imageWidth = 10/2.5; // Largeur de l'image en pouces
-$imageHeight = 15/2.5; // Hauteur de l'image en pouces
-
-// Calculer les coordonnées x et y pour placer l'image au centre de la zone
-$xx = ($zoneWidth - $imageWidth) / 2;
-$yx = ($zoneHeight - $imageHeight) / 2;
-
-// Afficher l'image au centre de la zone
-$pdf->Image(ImageRelace($match_data[2]), $x- 4.5, $y- 0.3, $imageWidth, $imageHeight, 'PNG', '', '', false, 300, '', false, false, 0, '', false, false);
-
-
-
+    $pdf->Image(ImageRelace($match_data[2]), $x - 4.5, $y - 0.3, $imageWidth, $imageHeight, 'PNG', '', '', false, 300, '', false, false, 0, '', false, false);
+    // #2 Equipes, scores et Ecussons 
     $pdf->SetXY($x, $y + $height_cell + $space_y);
     $pdf->Cell($width_team, $height_cell, $match_data[4], $border, 0, 'L', 1, 1, 1, false, '', 'L');
     $pdf->SetXY($x + $width_team + $space_x, $y + $height_cell + $space_y);
     $pdf->Cell($width_score, $height_cell, $match_data[5], $border, 0, 'L', 1, 1, 1, false, '', 'M');
-    $pdf->Image(ImageRelace($match_data[4]), $x - 4, $y + $height_cell + $space_y - 0.5, 6, 4, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
+    $pdf->Image(ImageRelace($match_data[4]), $x - 4.5, $y + $height_cell + $space_y, $imageWidth, $imageHeight, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
 }
 
+/**
+ * @Documented titreTour
+ *
+ * @param [type] $pdf
+ * @param [int] $posx -> position bloc
+ * @param [int] $posy -> position bloc
+ * @param [int] $title -> texte du titre
+ * @param [int] $justif -> 'C', 'L' ou 'R'
+ * @param [int] $width -> larageur totale $width_team + $width_score
+ * @param [int] $border -> 0 / 1
+ */
 
-
-function titreTour($pdf,$posx,$posy,$title,$justif,$width, $border){
+function titreTour($pdf, $posx, $posy, $title, $justif, $width, $border)
+{
     $pdf->SetFont('robotoi', '', 10, '', false);
     $pdf->SetTextColor(0, 0, 0, 100);
-    $pdf->SetXY($posx,$posy);
+    $pdf->SetXY($posx, $posy);
     $pdf->Cell($width, 0, $title, $border, 0, $justif);
 }
 
@@ -164,11 +179,11 @@ $y_qf1 = 33;
 $y_qf2 = 48;
 $y_qf3 = 63;
 
-$x_sf = 38;
+$x_sf = 40;
 $y_sf1 = 25;
 $y_sf2 = 57;
 
-$x_f = 70;
+$x_f = 71;
 $y_f = 42;
 
 $spaceHtitle = 7.5; // Espace vertical entre le titre du tour et le premier bloc rencontre
@@ -183,7 +198,7 @@ $pdf->SetXY(0, 0);
 $pdf->Cell(101.8, 7.8, 'Champions Cup', $border, 0, 'C', 1);
 
 //@ Epreuves 1/4
-titreTour($pdf,$x_qf, $y_qf4-$spaceHtitle,'Quarts de finale','C',$width_team+$width_score, $border);
+titreTour($pdf, $x_qf, $y_qf4 - $spaceHtitle, 'Quarts de finale', 'C', $width_team + $width_score, $border);
 // Utilisation de la fonction pour dessiner Quart de finale 4
 drawMatchCells($pdf, $x_qf, $y_qf4, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[3], $border);
 // Utilisation de la fonction pour dessiner Quart de finale 1
@@ -195,7 +210,7 @@ drawMatchCells($pdf, $x_qf, $y_qf3, $width_team, $width_score, $height_cell, $sp
 
 
 //@ Epreuves Demi-finales
-titreTour($pdf,$x_sf, $y_sf1-$spaceHtitle,'Demi-finales','C',$width_team+$width_score, $border);
+titreTour($pdf, $x_sf, $y_sf1 - $spaceHtitle, 'Demi-finales', 'C', $width_team + $width_score, $border);
 // Utilisation de la fonction pour dessiner Demie finale 1
 drawMatchCells($pdf, $x_sf, $y_sf1, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[4], $border);
 // Utilisation de la fonction pour dessiner Demie finale 2
@@ -203,7 +218,7 @@ drawMatchCells($pdf, $x_sf, $y_sf2, $width_team, $width_score, $height_cell, $sp
 
 
 //@ Epreuves Finale
-titreTour($pdf,$x_f, $y_f-$spaceHtitle,'Finale','C',$width_team+$width_score, $border);
+titreTour($pdf, $x_f, $y_f - $spaceHtitle, 'Finale', 'C', $width_team + $width_score, $border);
 drawMatchCells($pdf, $x_f, $y_f, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[6], $border);
 
 // close and output PDF document
