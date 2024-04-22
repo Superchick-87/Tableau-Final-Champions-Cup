@@ -1,6 +1,7 @@
 <?php
+
 // Récupérer les données depuis $_POST
-$data = array(
+$datae = array(
     "Quart de finale 1" => array(
         $_POST['lieu_qf1'],
         $_POST['team1_qf1'],
@@ -53,16 +54,18 @@ $data = array(
 );
 
 // Ouvrir ou créer le fichier CSV en mode écriture
-$file = fopen('datas.csv', 'w');
+$filee = fopen('datas.csv', 'w');
 
 // Parcourir chaque élément du tableau et écrire dans le fichier CSV
-foreach ($data as $key => $value) {
-    fputcsv($file, array_merge(array($key), $value));
+foreach ($datae as $keye => $valuee) {
+    fputcsv($filee, array_merge(array($keye), $valuee));
 }
 
 // Fermer le fichier
-fclose($file);
+fclose($filee);
 
 // Réponse indiquant que les données ont été écrites avec succès dans le fichier CSV
 echo "Les données ont été enregistrées dans le fichier CSV avec succès.";
-// include('pdf.php');
+echo '00000000';
+include(dirname(__FILE__) . '/pdf.php');
+include(dirname(__FILE__) . '/pdf_.php');

@@ -1,4 +1,5 @@
 <?php
+
 include(dirname(__FILE__) . '/includes/ddc.php');
 include(dirname(__FILE__) . '/includes/date.php');
 function read($csv)
@@ -14,27 +15,28 @@ $csv = dirname(__FILE__) . '/datas.csv';
 $csv = read($csv);
 
 
-//  * Creates an example PDF TEST document using TCPDF
-//  * @package com.tecnick.tcpdf
-//  * @abstract TCPDF - Example: WriteHTML and RTL support
-//  * @author Nicola Asuni
-//  * @since 2008-03-04
-//  */
+/**
+ * Creates an example PDF TEST document using TCPDF
+ * @package com.tecnick.tcpdf
+ * @abstract TCPDF - Example: WriteHTML and RTL support
+ * @author Nicola Asuni
+ * @since 2008-03-04
+ */
 
-
-require_once('TCPDF/tcpdf.php');
+// require_once('TCPDF/tcpdf.php');
+require_once('TCPDF-master/tcpdf.php');
 
 // create new PDF document
 $pageLayout = array(101.8, 75); //  or array($height, $width) 
 $pdf = new TCPDF('F', 'mm', $pageLayout, true, 'UTF-8', false);
 // $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-// set document information
-$pdf->SetCreator(PDF_CREATOR);
-$pdf->SetAuthor('Nicolas Peyrebrune');
-$pdf->SetTitle('Infographie Flux carburants');
-$pdf->SetSubject('Infographie');
-$pdf->SetKeywords('Infographie, SUDOUEST, flux, carburants, match');
+// // set document information
+// $pdf->SetCreator(PDF_CREATOR);
+// $pdf->SetAuthor('Nicolas Peyrebrune');
+// $pdf->SetTitle('Infographie Flux carburants');
+// $pdf->SetSubject('Infographie');
+// $pdf->SetKeywords('Infographie, SUDOUEST, flux, carburants, match');
 
 // remove default header/footer
 $pdf->setPrintHeader(false);
@@ -46,7 +48,6 @@ $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 // set margins
 // $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 $pdf->SetMargins(0, 0, 0, 0);
-// $pdf->SetPaddings(0,0,0,0);
 
 // set auto page breaks
 // $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
@@ -66,11 +67,7 @@ if (@file_exists(dirname(__FILE__) . '/lang/fra.php')) {
 // add a page
 $pdf->AddPage();
 // get esternal file content
-$utf8text = file_get_contents('TCPDF-master/examples/data/utf8test.txt', false);
-
-
-// writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
-// writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
+// $utf8text = file_get_contents('TCPDF-master/examples/data/utf8test.txt', false);
 
 // $fontname = TCPDF_FONTS::addTTFfont('/TCPDF-master/fonts/UtopiaStd-BlackHeadline.ttf', 'TrueTypeUnicode', '', 96);
 // $pdf->SetFont($font_family = 'utopiastdblackheadline', '', 14, '', false);
@@ -142,7 +139,7 @@ function drawMatchCells($pdf, $x, $y, $width_team, $width_score, $height_cell, $
     $pdf->SetXY($x + $width_team + $space_x, $y + $height_cell + $space_y);
     $pdf->Cell($width_score, $height_cell, $match_data[5], $border, 0, 'L', 1, 1, 1, false, '', 'M');
     $pdf->Image(ImageRelace($match_data[4]), $x - 4.5, $y + $height_cell + $space_y, $imageWidth, $imageHeight, 'PNG', '', '', false, 300, 'M', false, false, 0, 'B', false, false);
-}
+};
 
 /**
  * @Documented titreTour
@@ -162,7 +159,7 @@ function titreTour($pdf, $posx, $posy, $title, $justif, $width, $border)
     $pdf->SetTextColor(0, 0, 0, 100);
     $pdf->SetXY($posx, $posy);
     $pdf->Cell($width, 0, $title, $border, 0, $justif);
-}
+};
 
 $border = 0;
 
@@ -181,10 +178,10 @@ $y_qf3 = 63;
 
 $x_sf = 40;
 $y_sf1 = 25;
-$y_sf2 = 57;
+$y_sf2 = 55;
 
 $x_f = 71;
-$y_f = 42;
+$y_f = 39.5;
 
 $spaceHtitle = 7.5; // Espace vertical entre le titre du tour et le premier bloc rencontre
 
@@ -221,10 +218,12 @@ drawMatchCells($pdf, $x_sf, $y_sf2, $width_team, $width_score, $height_cell, $sp
 titreTour($pdf, $x_f, $y_f - $spaceHtitle, 'Finale', 'C', $width_team + $width_score, $border);
 drawMatchCells($pdf, $x_f, $y_f, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[6], $border);
 
+ob_end_clean();
 // close and output PDF document
-$pdf->Output('TableauFinalChampions Cup_' . $date . '.pdf', 'I');
-// $pdf->Output('ProductionPdf/TableauFinalChampions Cup_'.$date.'.pdf','F');
-// $pdf->Output('ProductionPdf/Infog_Carburants_1col4modules_' . $ville . '_' . $date . '.pdf', 'F');
+
+$pdf->Output('ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf', 'F');
+// $pdf->Output('TableauFinalChampionsCup_' . $date . '.pdf', 'D');
+// echo '<a href="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf" download="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf">Télécharger PDF</a>';
 
 //============================================================+
 // END OF FILE
