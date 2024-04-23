@@ -15,5 +15,5 @@ $pdf_content = file_get_contents($pdf_url);
 // Écrire le contenu du fichier PDF dans le dossier de destination
 file_put_contents($destination . $filename, $pdf_content);
 
-echo "<div id='download'>Le fichier PDF a été téléchargé avec succès dans le dossier spécifié.</div>";
+echo "<div id='download'>Le fichier PDF a été téléchargé avec succès sur votre bureau.</div>";
 ?>
