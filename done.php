@@ -64,8 +64,5 @@ foreach ($datae as $keye => $valuee) {
 // Fermer le fichier
 fclose($filee);
 
-// Réponse indiquant que les données ont été écrites avec succès dans le fichier CSV
-// echo "Les données ont été enregistrées dans le fichier CSV avec succès.";
-// echo '00000000';
 include(dirname(__FILE__) . '/pdf.php');
-include(dirname(__FILE__) . '/pdf_.php');
+include(dirname(__FILE__) . '/pdf_Download.php');
