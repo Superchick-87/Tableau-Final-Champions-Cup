@@ -182,11 +182,11 @@
                 <input type="text" id="lieu_qf4" class="lieu">
                 <br>
                 <img id="team1_qf4-logo" alt="" data-team-name="">
-                <input type="text" id="team1_qf4" placeholder="Équipe 1" class="equipe" value="Toulouse">
+                <input type="text" id="team1_qf4" readonly placeholder="Équipe 1" class="equipe" value="Toulouse">
                 <input type="number" id="score1_qf4" placeholder="" class="score" value="">
                 <br>
                 <img id="team2_qf4-logo" alt="" data-team-name="">
-                <input type="text" id="team2_qf4" placeholder="Équipe 2" class="equipe" value="Exeter">
+                <input type="text" id="team2_qf4" readonly placeholder="Équipe 2" class="equipe" value="Exeter">
                 <input type="number" id="score2_qf4" placeholder="" class="score">
             </div>
             <div class="quarter-final">
@@ -194,11 +194,12 @@
                 <input type="text" id="lieu_qf1" class="lieu">
                 <br>
                 <img id="team1_qf1-logo" alt="">
-                <input type="text" id="team1_qf1" placeholder="Équipe 1" class="equipe" value="Bordeaux-Bègles">
+                <input type="text" id="team1_qf1" readonly placeholder="Équipe 1" class="equipe"
+                    value="Bordeaux-Bègles">
                 <input type="number" id="score1_qf1" placeholder="" class="score">
                 <br>
                 <img id="team2_qf1-logo" alt="">
-                <input type="text" id="team2_qf1" placeholder="Équipe 2" class="equipe" value="Harlequins">
+                <input type="text" id="team2_qf1" readonly placeholder="Équipe 2" class="equipe" value="Harlequins">
                 <input type="number" id="score2_qf1" placeholder="" class="score">
             </div>
         </div>
@@ -207,11 +208,11 @@
             <input type="text" id="lieu_sf1" class="lieu">
             <br>
             <img id="team1_sf1-logo" alt="">
-            <input type="text" id="team1_sf1" placeholder="Équipe 1" class="equipe">
+            <input type="text" id="team1_sf1" readonly placeholder="Équipe 1" class="equipe">
             <input type="number" id="score1_sf1" placeholder="" class="score">
             <br>
             <img id="team2_sf1-logo" alt="">
-            <input type="text" id="team2_sf1" placeholder="Équipe 2" class="equipe">
+            <input type="text" id="team2_sf1" readonly placeholder="Équipe 2" class="equipe">
             <input type="number" id="score2_sf1" placeholder="" class="score">
         </div>
         <div class="semi-final">
@@ -219,11 +220,11 @@
             <input type="text" id="lieu_sf2" class="lieu">
             <br>
             <img id="team1_sf2-logo" alt="">
-            <input type="text" id="team1_sf2" placeholder="Équipe 1" class="equipe">
+            <input type="text" id="team1_sf2" readonly placeholder="Équipe 1" class="equipe">
             <input type="number" id="score1_sf2" placeholder="" class="score">
             <br>
             <img id="team2_sf2-logo" alt="">
-            <input type="text" id="team2_sf2" placeholder="Équipe 2" class="equipe">
+            <input type="text" id="team2_sf2" readonly placeholder="Équipe 2" class="equipe">
             <input type="number" id="score2_sf2" placeholder="" class="score">
         </div>
         <div>
@@ -232,11 +233,11 @@
                 <input type="text" id="lieu_qf2" class="lieu">
                 <br>
                 <img id="team1_qf2-logo" alt="">
-                <input type="text" id="team1_qf2" placeholder="Équipe 1" class="equipe">
+                <input type="text" id="team1_qf2" readonly placeholder="Équipe 1" class="equipe">
                 <input type="number" id="score1_qf2" placeholder="" class="score">
                 <br>
                 <img id="team2_qf2-logo" alt="">
-                <input type="text" id="team2_qf2" placeholder="Équipe 2" class="equipe">
+                <input type="text" id="team2_qf2" readonly placeholder="Équipe 2" class="equipe">
                 <input type="number" id="score2_qf2" placeholder="" class="score">
             </div>
             <div class="quarter-final">
@@ -244,11 +245,11 @@
                 <input type="text" id="lieu_qf3" class="lieu">
                 <br>
                 <img id="team1_qf3-logo" alt="">
-                <input type="text" id="team1_qf3" placeholder="Équipe 1" class="equipe">
+                <input type="text" id="team1_qf3" readonly placeholder="Équipe 1" class="equipe">
                 <input type="number" id="score1_qf3" placeholder="" class="score">
                 <br>
                 <img id="team2_qf3-logo" alt="">
-                <input type="text" id="team2_qf3" placeholder="Équipe 2" class="equipe">
+                <input type="text" id="team2_qf3" readonly placeholder="Équipe 2" class="equipe">
                 <input type="number" id="score2_qf3" placeholder="" class="score">
             </div>
         </div>
@@ -258,11 +259,11 @@
         <input type="text" id="lieu_final" class="lieu">
         <br>
         <img id="team1_final-logo" alt="">
-        <input type="text" id="team1_final" placeholder="Équipe 1" class="equipe">
+        <input type="text" id="team1_final" readonly placeholder="Équipe 1" class="equipe">
         <input type="number" id="score1_final" placeholder="" class="score">
         <br>
         <img id="team2_final-logo" alt="">
-        <input type="text" id="team2_final" placeholder="Équipe 2" class="equipe">
+        <input type="text" id="team2_final" readonly placeholder="Équipe 2" class="equipe">
         <input type="number" id="score2_final" placeholder="" class="score">
     </div>
     <div class="center">
@@ -281,12 +282,16 @@
 
     <script>
         function sendData() {
+            // document.getElementById("download").style.display = "none";
             // Afficher le loader seulement si #txtHint est vide
             if (document.getElementById("txtHint").innerHTML.trim() === "") {
                 document.getElementById("loader").style.display = "block";
                 document.getElementById("legend").style.display = "none";
             }
-
+            else {
+                document.getElementById("download").style.display = "none";
+                document.getElementById("loader").style.display = "block";
+            }
             // Créer un objet FormData pour collecter toutes les données des champs d'entrée
             var formData = new FormData();
 
@@ -309,8 +314,7 @@
                     document.getElementById("txtHint").innerHTML = this.responseText;
                     // Masquer une fois que la réponse est reçue
                     document.getElementById("loader").style.display = "none";
-
-
+                    // document.getElementById("download").style.display = "block";
 
                 }
             };
@@ -351,8 +355,8 @@
                         document.getElementById(`score2_final`).value = score2Final || "";
 
                         // Mettre à jour les images des équipes pour la finale
-                        const imgSrc1Final = equipe1Final ? `images/Rugby/${cleanString(equipe1Final)}.png` : 'images/Rugby/xx.png';
-                        const imgSrc2Final = equipe2Final ? `images/Rugby/${cleanString(equipe2Final)}.png` : 'images/Rugby/xx.png';
+                        const imgSrc1Final = equipe1Final ? `images/Rugby/${camelize(equipe1Final)}.png` : 'images/Rugby/xx.png';
+                        const imgSrc2Final = equipe2Final ? `images/Rugby/${camelize(equipe2Final)}.png` : 'images/Rugby/xx.png';
 
                         document.getElementById(`team1_final-logo`).src = imgSrc1Final;
                         document.getElementById(`team2_final-logo`).src = imgSrc2Final;
@@ -377,8 +381,8 @@
                         document.getElementById(`score2_qf${i + 1}`).value = score2QF;
 
                         // Mettre à jour les images des équipes pour les quarts de finale
-                        const imgSrc1QF = equipe1QF ? `images/Rugby/${cleanString(equipe1QF)}.png` : 'images/Rugby/xx.png';
-                        const imgSrc2QF = equipe2QF ? `images/Rugby/${cleanString(equipe2QF)}.png` : 'images/Rugby/xx.png';
+                        const imgSrc1QF = equipe1QF ? `images/Rugby/${camelize(equipe1QF)}.png` : 'images/Rugby/xx.png';
+                        const imgSrc2QF = equipe2QF ? `images/Rugby/${camelize(equipe2QF)}.png` : 'images/Rugby/xx.png';
 
                         document.getElementById(`team1_qf${i + 1}-logo`).src = imgSrc1QF;
                         document.getElementById(`team2_qf${i + 1}-logo`).src = imgSrc2QF;
@@ -401,8 +405,8 @@
                         document.getElementById(`score2_sf${i - 3}`).value = score2SF;
 
                         // Mettre à jour les images des équipes pour les demi-finales et la finale
-                        const imgSrc1SF = equipe1SF ? `images/Rugby/${cleanString(equipe1SF)}.png` : 'images/Rugby/xx.png';
-                        const imgSrc2SF = equipe2SF ? `images/Rugby/${cleanString(equipe2SF)}.png` : 'images/Rugby/xx.png';
+                        const imgSrc1SF = equipe1SF ? `images/Rugby/${camelize(equipe1SF)}.png` : 'images/Rugby/xx.png';
+                        const imgSrc2SF = equipe2SF ? `images/Rugby/${camelize(equipe2SF)}.png` : 'images/Rugby/xx.png';
 
                         document.getElementById(`team1_sf${i - 3}-logo`).src = imgSrc1SF;
                         document.getElementById(`team2_sf${i - 3}-logo`).src = imgSrc2SF;
@@ -413,34 +417,35 @@
                 .catch(error => console.log('Erreur de chargement du fichier CSV :', error));
         };
     </script>
+    <script src="js/camelize.js"></script>
     <script>
         // Fonction pour supprimer les espaces, les accents et les tirets d'une chaîne de caractères
-        function cleanString(str) {
-            // Remplacer les espaces par une chaîne vide
-            let stringWithoutSpaces = str.replace(/\s+/g, '');
+        // function cleanString(str) {
+        //     // Remplacer les espaces par une chaîne vide
+        //     let stringWithoutSpaces = str.replace(/\s+/g, '');
 
-            // Remplacer les caractères accentués, les tirets et autres caractères spéciaux
-            const accentsMap = {
-                'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
-                'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
-                'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
-                'ä': 'a', 'ë': 'e', 'ï': 'i', 'ö': 'o', 'ü': 'u',
-                'ã': 'a', 'ñ': 'n', 'õ': 'o', 'ç': 'c',
-                'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U',
-                'À': 'A', 'È': 'E', 'Ì': 'I', 'Ò': 'O', 'Ù': 'U',
-                'Â': 'A', 'Ê': 'E', 'Î': 'I', 'Ô': 'O', 'Û': 'U',
-                'Ä': 'A', 'Ë': 'E', 'Ï': 'I', 'Ö': 'O', 'Ü': 'U',
-                'Ã': 'A', 'Ñ': 'N', 'Õ': 'O', 'Ç': 'C',
-                '-': '', // Supprimer les tirets
-                '_': '' // Supprimer les underscores (caractère de soulignement)
-            };
+        //     // Remplacer les caractères accentués, les tirets et autres caractères spéciaux
+        //     const accentsMap = {
+        //         'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+        //         'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
+        //         'â': 'a', 'ê': 'e', 'î': 'i', 'ô': 'o', 'û': 'u',
+        //         'ä': 'a', 'ë': 'e', 'ï': 'i', 'ö': 'o', 'ü': 'u',
+        //         'ã': 'a', 'ñ': 'n', 'õ': 'o', 'ç': 'c',
+        //         'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U',
+        //         'À': 'A', 'È': 'E', 'Ì': 'I', 'Ò': 'O', 'Ù': 'U',
+        //         'Â': 'A', 'Ê': 'E', 'Î': 'I', 'Ô': 'O', 'Û': 'U',
+        //         'Ä': 'A', 'Ë': 'E', 'Ï': 'I', 'Ö': 'O', 'Ü': 'U',
+        //         'Ã': 'A', 'Ñ': 'N', 'Õ': 'O', 'Ç': 'C',
+        //         '-': '', // Supprimer les tirets
+        //         '_': '' // Supprimer les underscores (caractère de soulignement)
+        //     };
 
-            stringWithoutSpaces = stringWithoutSpaces.replace(/[^a-zA-Z0-9]/g, function (character) {
-                return accentsMap[character] || character;
-            });
+        //     stringWithoutSpaces = stringWithoutSpaces.replace(/[^a-zA-Z0-9]/g, function (character) {
+        //         return accentsMap[character] || character;
+        //     });
 
-            return stringWithoutSpaces;
-        }
+        //     return stringWithoutSpaces;
+        // }
         const qfElements = document.querySelectorAll('.quarter-final');
 
         // Ajoutez des écouteurs d'événements pour les quarts de finale
@@ -639,7 +644,7 @@
                 return imagePath + defaultImage;
             }
 
-            const cleanedTeamName = cleanString(teamName);
+            const cleanedTeamName = camelize(teamName);
             const imageSrc = imagePath + cleanedTeamName + '.png';
 
             // Vérifier si l'image existe, sinon, retourner l'image par défaut

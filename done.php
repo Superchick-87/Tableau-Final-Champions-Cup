@@ -65,4 +65,5 @@ foreach ($datae as $keye => $valuee) {
 fclose($filee);
 
 include(dirname(__FILE__) . '/pdf.php');
-include(dirname(__FILE__) . '/pdf_Download.php');
+echo ddc('Bègles-Bordeaux');
+// include(dirname(__FILE__) . '/pdf_Download.php');

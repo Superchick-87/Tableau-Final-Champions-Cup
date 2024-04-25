@@ -218,12 +218,14 @@ drawMatchCells($pdf, $x_sf, $y_sf2, $width_team, $width_score, $height_cell, $sp
 titreTour($pdf, $x_f, $y_f - $spaceHtitle, 'Finale', 'C', $width_team + $width_score, $border);
 drawMatchCells($pdf, $x_f, $y_f, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[6], $border);
 
+$pdf->ImageSVG('images/ChampionsCup.svg', 76, 13, 18.5, 16.6, '', '', '', $border, false);
+$pdf->ImageSVG('images/signature.svg', 86, 71, 15, 3, '', '', '', $border, false);
 ob_end_clean();
 // close and output PDF document
 
 $pdf->Output('ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf', 'F');
 // $pdf->Output('TableauFinalChampionsCup_' . $date . '.pdf', 'D');
-// echo '<a href="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf" download="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf">Télécharger PDF</a>';
+echo '<a id="download" href="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf" download="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf">Télécharger PDF</a>';
 
 //============================================================+
 // END OF FILE

@@ -1,7 +1,7 @@
 
 <?php
 // URL du fichier PDF à télécharger
-$pdf_url = "ProductionPdf/TableauFinalChampionsCup_" . $date . ".pdf";
+$pdf_url = "https://infographie.sudouest.fr/ProductionPdf/TableauFinalChampionsCup_" . $date . ".pdf";
 
 // Chemin où vous souhaitez enregistrer le fichier PDF téléchargé
 $destination = getenv("HOME") . "/Desktop/";
