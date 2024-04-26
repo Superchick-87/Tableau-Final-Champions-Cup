@@ -1,6 +1,6 @@
 <?php
 
-include(dirname(__FILE__) . '/includes/ddc.php');
+// include(dirname(__FILE__) . '/includes/ddc.php');
 include(dirname(__FILE__) . '/includes/date.php');
 function read($csv)
 {
@@ -11,7 +11,7 @@ function read($csv)
     fclose($file);
     return $line;
 }
-$csv = dirname(__FILE__) . '/datas.csv';
+$csv = dirname(__FILE__) . '/datas_' . ddc($_POST['competition']) . '.csv';
 $csv = read($csv);
 
 
@@ -192,7 +192,7 @@ $pdf->SetFont('robotomedium', '', 18, '', false);
 $pdf->SetTextColor(0, 0, 0, 0);
 $pdf->SetFillColor(90, 10, 65, 15);
 $pdf->SetXY(0, 0);
-$pdf->Cell(101.8, 7.8, 'Champions Cup', $border, 0, 'C', 1);
+$pdf->Cell(101.8, 7.8, $_POST['competition'], $border, 0, 'C', 1);
 
 //@ Epreuves 1/4
 titreTour($pdf, $x_qf, $y_qf4 - $spaceHtitle, 'Quarts de finale', 'C', $width_team + $width_score, $border);
@@ -218,15 +218,16 @@ drawMatchCells($pdf, $x_sf, $y_sf2, $width_team, $width_score, $height_cell, $sp
 titreTour($pdf, $x_f, $y_f - $spaceHtitle, 'Finale', 'C', $width_team + $width_score, $border);
 drawMatchCells($pdf, $x_f, $y_f, $width_team, $width_score, $height_cell, $space_x, $space_y, $csv[6], $border);
 
-$pdf->ImageSVG('images/ChampionsCup.svg', 76, 13, 18.5, 16.6, '', '', '', $border, false);
+$pdf->ImageSVG('images/' . ddc($_POST['competition']) . '.svg', 76, 13, 18.5, 16.6, '', '', '', $border, false);
 $pdf->ImageSVG('images/signature.svg', 86, 71, 15, 3, '', '', '', $border, false);
 ob_end_clean();
 // close and output PDF document
 
-$pdf->Output('ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf', 'F');
+$pdf->Output('ProductionPdf/TableauFinal' . ddc($_POST['competition']) . '_' . $date . '.pdf', 'F');
 // $pdf->Output('TableauFinalChampionsCup_' . $date . '.pdf', 'D');
-echo '<a id="download" href="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf" download="ProductionPdf/TableauFinalChampionsCup_' . $date . '.pdf">Télécharger PDF</a>';
-
+echo '<a id="download" href="ProductionPdf/TableauFinal' . ddc($_POST['competition']) . '_' . $date . '.pdf" download="TableauFinal' . ddc($_POST['competition']) . '_' . $date . '.pdf">
+<button type="button" id="submitBtn_">Télécharger</button>
+</a>';
 //============================================================+
 // END OF FILE
 //============================================================+

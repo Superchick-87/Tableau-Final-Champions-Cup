@@ -115,6 +115,10 @@
         background-color: #4a7088;
     }
 
+    .center {
+        text-align: center;
+    }
+
     .loader {
         margin: 0px auto;
         width: 5em;
@@ -172,10 +176,20 @@
         }
     }
 </style>
+<?php
+include(dirname(__FILE__) . '/includes/ddc.php');
+$_GET['competition'];
+$competition = $_GET['competition'];
+?>
+
 
 <body>
-    <h1>Tableau de rugby</h1>
+    <div class="center">
+        <img src="images/<?php echo ddc($competition); ?>.svg" style="width: 110px; height: auto;">
+    </div>
+    <h1>Tableau final</h1>
     <div class="container">
+        <input type="text" id="competition" value='<?php echo $competition; ?>' style="display:none;">
         <div>
             <div class="quarter-final">
                 <h3>Quart de finale 4</h3>
@@ -194,8 +208,7 @@
                 <input type="text" id="lieu_qf1" class="lieu">
                 <br>
                 <img id="team1_qf1-logo" alt="">
-                <input type="text" id="team1_qf1" readonly placeholder="Équipe 1" class="equipe"
-                    value="Bordeaux-Bègles">
+                <input type="text" id="team1_qf1" readonly placeholder="Équipe 1" class="equipe" value="Bordeaux-Bègles">
                 <input type="number" id="score1_qf1" placeholder="" class="score">
                 <br>
                 <img id="team2_qf1-logo" alt="">
@@ -280,7 +293,6 @@
         </br>
         <div id="txtHint"></div>
     </div>
-    <!-- <div id="loader" class="loader" style="display: none;">Chargement en cours...</div> -->
 
     <script>
         function sendData() {
@@ -289,8 +301,7 @@
             if (document.getElementById("txtHint").innerHTML.trim() === "") {
                 document.getElementById("loader").style.display = "block";
                 document.getElementById("legend").style.display = "none";
-            }
-            else {
+            } else {
                 document.getElementById("download").style.display = "none";
                 document.getElementById("loader").style.display = "block";
             }
@@ -301,7 +312,7 @@
             var inputs = document.querySelectorAll('input');
 
             // Parcourir tous les champs d'entrée
-            inputs.forEach(function (input) {
+            inputs.forEach(function(input) {
                 // Ajouter chaque valeur de champ d'entrée au formData
                 formData.append(input.id, input.value);
             });
@@ -310,7 +321,7 @@
             var xhttp = new XMLHttpRequest();
 
             // Définir ce qu'il se passe lorsqu'une réponse est reçue
-            xhttp.onreadystatechange = function () {
+            xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     // Mettre à jour le contenu de l'élément avec la réponse
                     document.getElementById("txtHint").innerHTML = this.responseText;
@@ -329,13 +340,17 @@
         }
     </script>
     <script>
-        window.onload = function () {
+        window.onload = function() {
             // Charger le fichier CSV
-            fetch('datas.csv')
+            competition = document.getElementById(`competition`).value;
+            console.log(camelize(competition));
+            fetch('datas_' + camelize(competition) + '.csv')
                 .then(response => response.text())
                 .then(data => {
                     // Utiliser PapaParse pour parser le CSV
-                    const parsedData = Papa.parse(data, { header: false });
+                    const parsedData = Papa.parse(data, {
+                        header: false
+                    });
 
                     // Accéder aux données analysées
                     const rows = parsedData.data;
@@ -676,7 +691,6 @@
             team1_final_logo.src = team1_final_name ? `images/Rugby/${cleanString(team1_final_name)}.png` : `images/Rugby/${defaultImage}`;
             team2_final_logo.src = team2_final_name ? `images/Rugby/${cleanString(team2_final_name)}.png` : `images/Rugby/${defaultImage}`;
         }
-
     </script>
 
 </body>

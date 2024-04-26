@@ -1,4 +1,5 @@
 <?php
+include(dirname(__FILE__) . '/includes/ddc.php');
 
 // Récupérer les données depuis $_POST
 $datae = array(
@@ -54,7 +55,7 @@ $datae = array(
 );
 
 // Ouvrir ou créer le fichier CSV en mode écriture
-$filee = fopen('datas.csv', 'w');
+$filee = fopen('datas_' . ddc($_POST['competition']) . '.csv', 'w');
 
 // Parcourir chaque élément du tableau et écrire dans le fichier CSV
 foreach ($datae as $keye => $valuee) {
@@ -64,6 +65,6 @@ foreach ($datae as $keye => $valuee) {
 // Fermer le fichier
 fclose($filee);
 
+echo $_POST['competition'];
 include(dirname(__FILE__) . '/pdf.php');
-echo ddc('Bègles-Bordeaux');
-// include(dirname(__FILE__) . '/pdf_Download.php');
+// Vérifie si la variable competition existe dans $_GET
